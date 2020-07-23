@@ -1,0 +1,7 @@
+body {
+  /* 背景 */
+    background-color: pink;
+}
+p {
+  transform: rotate(-45deg);
+}
