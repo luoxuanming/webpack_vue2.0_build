@@ -3,13 +3,14 @@ const webpack = require('webpack')
 const webpackCommonConf = require('./webpack.common.js')
 const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./paths')
+const postcss = require('../postcss.config')
 
 module.exports = merge(webpackCommonConf, {
   mode: 'development',
   module: {
     rules: [
-      
-      
+
+
       // 直接引入图片 url
       {
         test: /\.(png|jpg|jpeg|gif)$/,
@@ -21,6 +22,35 @@ module.exports = merge(webpackCommonConf, {
         // loader 的执行顺序是：从后往前
         loader: ['style-loader', 'css-loader', 'postcss-loader'] // 加了 postcss
       },
+
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: postcss.plugins,
+              parser: 'postcss-less', //可支持行内注释
+              sourceMap: true,
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true,
+            }
+          }
+        ]
+      }
     ]
   },
   plugins: [

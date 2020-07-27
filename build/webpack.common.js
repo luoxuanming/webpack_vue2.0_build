@@ -11,12 +11,26 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        // options: {
-        //   hotReload: false // disables Hot Reload
-        // }
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              // 去除模板中的空格
+              preserveWhitespace: false,
+              // postcss配置,把vue文件中的样式部分,做后续处理
+              postcss: {
+                // plugins: [...], // 插件列表
+                options: { parser: 'postcss-scss' }
+              },
+              loaders: {
+                css: ['vue-style-loader', 'css-loader'],
+                scss: ['vue-style-loader', 'css-loader', 'scss-loader'],
+              }
+            }
+          }
+        ],
       },
-      
+
       {
         test: /\.js$/,
         loader: ['babel-loader'],
@@ -31,7 +45,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(srcPath, 'index.html'),
       filename: 'index.html',
-      chunks: ['index']
+      chunks: ['index', 'vendor', 'common']
     })
   ]
 }
