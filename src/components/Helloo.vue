@@ -6,14 +6,17 @@
 export default {
   data() {
     return {
-      msg: '子组件'
-    }
-  }
-}
+      msg: "子组件",
+    };
+  },
+  created() {
+   
+  },
+};
 </script>
 
 <style>
-  .green {
-    color: green;
-  }
+.green {
+  color: green;
+}
 </style>
