@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import Helloo from "./components/Helloo.vue";
-import LineChartCom from "./components/LineChartCom/index.vue";
-import {sum} from "./assets/js/sum.js"
+import Helloo from "./components/Helloo";
+import LineChartCom from "./components/LineChartCom/index";
+import {sum} from "@/assets/js/sum"
 export default {
   data() {
     return {

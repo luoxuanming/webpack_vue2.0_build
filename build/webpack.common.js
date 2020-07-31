@@ -39,6 +39,12 @@ module.exports = {
       },
     ]
   },
+  resolve: {
+    extensions: ['*', '.js', '.vue'], //可省略的后缀名
+    alias: {
+      '@': path.resolve(__dirname, '../', 'src') //解析@路径为src的路径
+    }
+  },
   plugins: [
     new VueLoaderPlugin(),
 
